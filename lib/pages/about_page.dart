@@ -12,10 +12,8 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final width = MediaQuery.of(context).size.width;
-    final bool isMobile = width < 700;
-    final bool isTablet = width >= 600 && width < 1024;
+    final bool isMobile = width < 800;
 
     const String desc =
         'A passionate App Developer based in Santa Maria, Bulacan Philippines, specializing in Flutter for cross-platform mobile development. I love crafting clean, performant apps with great user experiences.';
@@ -55,7 +53,6 @@ class AboutPage extends StatelessWidget {
               const Divider(height: 40),
 
               // ── STAT CARDS ──
-              // mobile: 2x2 grid, tablet+desktop: 4 in a row
               isMobile
                   ? Column(
                       children: [
@@ -81,7 +78,7 @@ class AboutPage extends StatelessWidget {
                           spacing: 8,
                           children: [
                             Expanded(
-                              child: StatCard(number: '1', label: 'CLIENT'),
+                              child: StatCard(number: '0', label: 'CLIENT'),
                             ),
                             Expanded(
                               child: StatCard(
@@ -107,7 +104,7 @@ class AboutPage extends StatelessWidget {
                           child: StatCard(number: '5', label: 'PROJECTS BUILT'),
                         ),
                         Expanded(
-                          child: StatCard(number: '1', label: 'CLIENT'),
+                          child: StatCard(number: '0', label: 'CLIENT'),
                         ),
                         Expanded(
                           child: StatCard(
@@ -122,7 +119,6 @@ class AboutPage extends StatelessWidget {
               const SizedBox(height: 8),
 
               // ── EDUCATION + EXPERIENCE ──
-              // mobile: stacked column, tablet+desktop: side by side
               if (isMobile)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,7 +258,6 @@ class AboutPage extends StatelessWidget {
           style: TextStyle(color: colorScheme.onSurfaceVariant),
         ),
         const SizedBox(height: 10),
-        // Wrap instead of Row so chips don't overflow on small screens
         Wrap(
           spacing: 10,
           runSpacing: 10,
@@ -276,19 +271,32 @@ class AboutPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 20),
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
-          children: [
-            CustomButton(
-              title: 'View Projects →',
-              isActive: true,
-              onTap: () => context.push('/project'),
-            ),
-            CustomButton(title: 'Contact me', isActive: false),
-          ],
-        ),
+        if (isMobile)
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            alignment: WrapAlignment.center,
+            children: [
+              CustomButton(
+                title: 'View Projects →',
+                onTap: () => context.go('/project'),
+                isActive: true,
+              ),
+              CustomButton(title: 'Download CV ↓', isActive: false),
+            ],
+          )
+        else
+          Row(
+            spacing: 20,
+            children: [
+              CustomButton(
+                title: 'View Projects →',
+                onTap: () => context.go('/project'),
+                isActive: true,
+              ),
+              CustomButton(title: 'Download CV ↓', isActive: false),
+            ],
+          ),
       ],
     );
   }
@@ -339,7 +347,6 @@ class AboutPage extends StatelessWidget {
                     style: TextStyle(
                       color: colorScheme.primary,
                       fontSize: 12,
-                      fontFamily: 'IBMPlexMono',
                     ),
                   ),
                   const SizedBox(height: 2),

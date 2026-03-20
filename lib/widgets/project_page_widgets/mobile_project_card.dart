@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_v2/theme/app_theme.dart';
+import 'package:portfolio_v2/widgets/global_widgets/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MobileProjectCard extends StatefulWidget {
@@ -106,18 +107,20 @@ class _MobileProjectCardState extends State<MobileProjectCard> {
                 // buttons
                 Row(
                   children: [
-                    if (widget.playStoreUrl != null)
-                      _fillBtn(
-                        label: 'Play Store ↗',
-                        colorScheme: colorScheme,
-                        onTap: () {},
-                      ),
-                    if (widget.githubUrl != null) ...[
-                      const SizedBox(width: 10),
-                      _outlineBtn(
-                        label: 'GitHub →',
+                    if (widget.githubUrl != null)
+                      CustomButton(
+                        title: 'GitHub →',
                         color: colorScheme.primary,
+                        isActive: true, 
                         onTap: () => _launchURL(widget.githubUrl ?? ''),
+                      ),
+                    if (widget.playStoreUrl != null) ...[
+                      const SizedBox(width: 10),
+                      CustomButton(
+                        title: 'Play Store ↗',
+                        color: colorScheme.primary,
+                        isActive: false, 
+                        onTap: () {}, 
                       ),
                     ],
                   ],
@@ -229,59 +232,6 @@ class _MobileProjectCardState extends State<MobileProjectCard> {
           fontWeight: FontWeight.w600,
           color: cs.onSurfaceVariant,
           letterSpacing: 0.8,
-        ),
-      ),
-    );
-  }
-
-  Widget _fillBtn({
-    required String label,
-    required ColorScheme colorScheme,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-        decoration: BoxDecoration(
-          color: colorScheme.primary,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            color: colorScheme.onPrimary,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _outlineBtn({
-    required String label,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-          decoration: BoxDecoration(
-            border: Border.all(color: color.withValues(alpha: 0.6)),
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              color: color,
-            ),
-          ),
         ),
       ),
     );

@@ -13,10 +13,8 @@ class ProjectPage extends StatelessWidget {
     final bool isMobile = width < 600;
     final bool isTablet = width >= 600 && width < 1024;
 
-    // web cards: 2 on tablet+desktop, 1 on mobile
     final int webCols = isMobile ? 1 : 2;
 
-    // mobile app cards: 3 on desktop, 2 on tablet, 1 on mobile
     final int mobCols = isMobile ? 1 : isTablet ? 2 : 3;
 
     return SizedBox.expand(
@@ -61,7 +59,7 @@ class ProjectPage extends StatelessWidget {
                         ),
                         Text(
                           'Flutter apps, portfolio and other experiments.',
-                          textAlign: isMobile ? TextAlign.center : TextAlign.start,
+                          textAlign: isMobile ? TextAlign.start : TextAlign.center,
                           style: TextStyle(color: colorScheme.onSurfaceVariant),
                         ),
                       ],

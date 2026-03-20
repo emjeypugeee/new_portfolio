@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_v2/theme/app_theme.dart';
+import 'package:portfolio_v2/widgets/global_widgets/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -96,25 +97,26 @@ class _ProjectCardState extends State<ProjectCard> {
                   ),
                 ),
                 const SizedBox(height: 16),
+
+                // Inside your _ProjectCardState build method...
                 Row(
                   children: [
                     if (widget.githubUrl != null)
-                      _outlineBtn(
-                        label: 'GitHub →',
+                      CustomButton(
+                        title: 'GitHub →',
                         color: colorScheme.primary,
+                        isActive: true, 
                         onTap: () => _launchURL(widget.githubUrl ?? ''),
                       ),
                     if (widget.playStoreUrl != null) ...[
                       const SizedBox(width: 10),
-                      _fillBtn(
-                        label: 'Play Store ↗',
-                        colorScheme: colorScheme,
-                        onTap: () {},
+                      CustomButton(
+                        title: 'Play Store ↗',
+                        color: colorScheme.primary,
+                        isActive: false, 
+                        onTap: () {}, 
                       ),
                     ],
-                    const Spacer(),
-                    if (widget.stars != null)
-                      _starBadge(widget.stars!, colorScheme),
                   ],
                 ),
               ],
@@ -144,9 +146,9 @@ class _ProjectCardState extends State<ProjectCard> {
                     onPageChanged: (i) => setState(() => _currentPage = i),
                     itemBuilder: (context, index) => Image.asset(
                       images[index],
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       width: double.infinity,
-                      alignment: Alignment.topCenter,
+                      alignment: Alignment.center,
                     ),
                   ),
 
@@ -284,73 +286,6 @@ class _ProjectCardState extends State<ProjectCard> {
           letterSpacing: 0.8,
         ),
       ),
-    );
-  }
-
-  Widget _outlineBtn({
-    required String label,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-          decoration: BoxDecoration(
-            border: Border.all(color: color.withValues(alpha: 0.6)),
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              color: color,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _fillBtn({
-    required String label,
-    required ColorScheme colorScheme,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-        decoration: BoxDecoration(
-          color: colorScheme.primary,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            color: colorScheme.onPrimary,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _starBadge(int count, ColorScheme cs) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Icon(Icons.star_rounded, color: Colors.amber, size: 18),
-        const SizedBox(width: 4),
-        Text(
-          '$count',
-          style: TextStyle(fontSize: 13, color: cs.onSurfaceVariant),
-        ),
-      ],
     );
   }
 }

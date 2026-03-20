@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_v2/widgets/global_widgets/custom_button.dart';
 import 'package:portfolio_v2/widgets/global_widgets/dash_title.dart';
+import 'package:portfolio_v2/widgets/project_page_widgets/hoverable_social_button.dart';
 import 'package:portfolio_v2/widgets/resume_page_widgets/experience_item.dart';
 import 'package:portfolio_v2/widgets/resume_page_widgets/section_title.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ResumePage extends StatefulWidget {
   const ResumePage({super.key});
 
   @override
   State<ResumePage> createState() => _ResumePageState();
+}
+
+Future<void> launchURL(String url) async {
+  final Uri uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not launch $url');
+  }
 }
 
 class _ResumePageState extends State<ResumePage> {
@@ -26,7 +37,6 @@ class _ResumePageState extends State<ResumePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               DashTitle(title: 'MY RESUME'),
               const SizedBox(height: 12),
 
@@ -59,7 +69,9 @@ class _ResumePageState extends State<ResumePage> {
                         ),
                         Text(
                           '2+ years building Flutter apps across school projects, internships and personal projects.',
-                          textAlign: isMobile ? TextAlign.center : TextAlign.start,
+                          textAlign: isMobile
+                              ? TextAlign.start
+                              : TextAlign.start,
                           style: TextStyle(color: colorScheme.onSurfaceVariant),
                         ),
                       ],
@@ -99,7 +111,6 @@ class _ResumePageState extends State<ResumePage> {
                     ],
                   ),
                 ),
-
             ],
           ),
         ),
@@ -112,14 +123,27 @@ class _ResumePageState extends State<ResumePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         SectionTitle(title: 'Contact'),
         const SizedBox(height: 10),
-        socialButtons(title: '@',  desc: 'undang.markjonas29@gmail.com'),
+        HoverableSocialButton(
+          title: '@',
+          desc: 'undang.markjonas29@gmail.com',
+          onTap: () {},
+        ),
         const SizedBox(height: 8),
-        socialButtons(title: 'G',  desc: 'github.com/emjeypugee'),
+        HoverableSocialButton(
+          title: 'G',
+          desc: 'github.com/emjeypugee',
+          onTap: () => launchURL('https://github.com/emjeypugeee'),
+        ),
         const SizedBox(height: 8),
-        socialButtons(title: 'in', desc: 'linkedin.com/in/markjundang'),
+        HoverableSocialButton(
+          title: 'in',
+          desc: 'linkedin.com/in/markjundang',
+          onTap: () => launchURL(
+            'https://www.linkedin.com/in/mark-jonas-undang-44636b216/',
+          ),
+        ),
 
         const SizedBox(height: 24),
         SectionTitle(title: 'Skills'),
@@ -149,8 +173,7 @@ class _ResumePageState extends State<ResumePage> {
         const SizedBox(height: 10),
         _languageItem(language: 'Filipino', level: 5),
         const SizedBox(height: 8),
-        _languageItem(language: 'English',  level: 3),
-
+        _languageItem(language: 'English', level: 3),
       ],
     );
   }
@@ -160,7 +183,6 @@ class _ResumePageState extends State<ResumePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         SectionTitle(title: 'Job Experience'),
         const SizedBox(height: 20),
 
@@ -205,12 +227,15 @@ class _ResumePageState extends State<ResumePage> {
             'Mastered all front-of-house stations, demonstrating flexibility to support team goals during rushes or staffing shortages.',
           ],
         ),
-
       ],
     );
   }
 
-  Widget socialButtons({required String title, required String desc}) {
+  Widget socialButtons({
+    required String title,
+    required String desc,
+    required void Function()? onTap,
+  }) {
     final colorScheme = Theme.of(context).colorScheme;
     return Row(
       spacing: 10,
@@ -228,9 +253,13 @@ class _ResumePageState extends State<ResumePage> {
           ),
         ),
         Expanded(
-          child: Text(
-            desc,
-            overflow: TextOverflow.ellipsis, // 👈 prevents overflow on narrow screens
+          child: GestureDetector(
+            onTap: onTap,
+            child: Text(
+              desc,
+              overflow: TextOverflow
+                  .ellipsis, // 👈 prevents overflow on narrow screens
+            ),
           ),
         ),
       ],
@@ -266,7 +295,10 @@ class _ResumePageState extends State<ResumePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(language, style: TextStyle(fontSize: 13, color: colorScheme.onSurface)),
+        Text(
+          language,
+          style: TextStyle(fontSize: 13, color: colorScheme.onSurface),
+        ),
         Row(
           spacing: 5,
           children: List.generate(5, (i) {
@@ -277,9 +309,13 @@ class _ResumePageState extends State<ResumePage> {
               height: 12,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: filled ? colorScheme.primary : colorScheme.surfaceContainerHigh,
+                color: filled
+                    ? colorScheme.primary
+                    : colorScheme.surfaceContainerHigh,
                 border: Border.all(
-                  color: filled ? colorScheme.primary : colorScheme.outlineVariant,
+                  color: filled
+                      ? colorScheme.primary
+                      : colorScheme.outlineVariant,
                   width: 1.5,
                 ),
               ),

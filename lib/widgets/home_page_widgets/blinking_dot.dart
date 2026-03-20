@@ -15,7 +15,7 @@ class _BlinkingDotState extends State<BlinkingDot> with SingleTickerProviderStat
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1600))
-      ..repeat(reverse: true); // goes 1.0 → 0.2 → 1.0 forever
+      ..repeat(reverse: true);
 
     _opacity = Tween<double>(
       begin: 1.0,

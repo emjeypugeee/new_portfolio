@@ -17,9 +17,8 @@ class DashedCirclePainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2;
 
-    // how many radians each dash+gap takes up
     final dashAngle = (2 * 3.14159265) / dashCount;
-    final dashLength = dashAngle * 0.1; // half dash, half gap
+    final dashLength = dashAngle * 0.1; 
 
     for (int i = 0; i < dashCount; i++) {
       final startAngle = dashAngle * i;

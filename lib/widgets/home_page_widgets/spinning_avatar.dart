@@ -9,7 +9,6 @@ class SpinningAvatar extends StatefulWidget {
 }
 
 class _SpinningAvatarState extends State<SpinningAvatar> with TickerProviderStateMixin {
-  // TickerProviderStateMixin for multiple controllers
   late AnimationController _ring1;
   late AnimationController _ring2;
 
@@ -17,10 +16,8 @@ class _SpinningAvatarState extends State<SpinningAvatar> with TickerProviderStat
   void initState() {
     super.initState();
 
-    // inner ring — spins forward, 20 seconds per rotation
     _ring1 = AnimationController(vsync: this, duration: const Duration(seconds: 20))..repeat();
 
-    // outer ring — spins backward, slower
     _ring2 = AnimationController(vsync: this, duration: const Duration(seconds: 35))..repeat();
   }
 
@@ -39,12 +36,11 @@ class _SpinningAvatarState extends State<SpinningAvatar> with TickerProviderStat
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // outer ring (spins reverse)
           AnimatedBuilder(
             animation: _ring2,
             builder: (context, child) {
               return Transform.rotate(
-                angle: -_ring2.value * 2 * 3.14159265, // negative = reverse
+                angle: -_ring2.value * 2 * 3.14159265,
                 child: child,
               );
             },
@@ -53,7 +49,7 @@ class _SpinningAvatarState extends State<SpinningAvatar> with TickerProviderStat
               height: 250,
               child: CustomPaint(
                 painter: DashedCirclePainter(
-                  color: Color(0xFFF5C518).withOpacity(0.09),
+                  color: Color(0xFFF5C518).withValues(alpha: 0.09),
                   strokeWidth: 1.0,
                   dashCount: 24,
                 ),
@@ -72,7 +68,7 @@ class _SpinningAvatarState extends State<SpinningAvatar> with TickerProviderStat
               height: 230,
               child: CustomPaint(
                 painter: DashedCirclePainter(
-                  color: Color(0xFFF5C518).withOpacity(0.22),
+                  color: Color(0xFFF5C518).withValues(alpha: 0.22),
                   strokeWidth: 1.5,
                   dashCount: 20,
                 ),
@@ -97,7 +93,6 @@ class _SpinningAvatarState extends State<SpinningAvatar> with TickerProviderStat
             child: Text(
               'MJ',
               style: TextStyle(
-                fontFamily: 'Orbitron',
                 fontSize: 52,
                 fontWeight: FontWeight.w900,
                 color: Color(0xFFF5C518),

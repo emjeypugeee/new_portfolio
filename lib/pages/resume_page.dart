@@ -187,17 +187,6 @@ class _ResumePageState extends State<ResumePage> {
         const SizedBox(height: 20),
 
         ExperienceItem(
-          role: 'IT Intern',
-          company: 'PGX Group Inc. · Internship',
-          duration: 'FEB 2026 - Present',
-          bullets: [
-            'Collaborated with the mobile development team to build and design responsive UI components using Flutter.',
-            'Integrated RESTful APIs to fetch and display dynamic data, ensuring a seamless user experience.',
-            'Participated in daily stand-ups, code reviews, and utilized Git for version control to maintain a clean codebase.',
-          ],
-        ),
-
-        ExperienceItem(
           role: 'Flutter Developer Intern',
           company: 'Peddlr Philippines, Inc. · Internship',
           duration: 'DEC 2025 - Present',
@@ -205,6 +194,17 @@ class _ResumePageState extends State<ResumePage> {
             'Assisted in developing and optimizing core features for POS and inventory management systems.',
             'Implemented state management using BLoC to ensure a scalable, predictable, and maintainable application architecture.',
             'Resolved UI/UX bugs and improved app performance across multiple screen sizes for both Android and iOS devices.',
+          ],
+        ),
+
+        ExperienceItem(
+          role: 'IT Intern (OJT 486 hrs)',
+          company: 'PGX Group Inc. · Required Internship',
+          duration: 'FEB 2026 - JUN 2026',
+          bullets: [
+            'Collaborated with the mobile development team to build and design responsive UI components using Flutter.',
+            'Integrated RESTful APIs to fetch and display dynamic data, ensuring a seamless user experience.',
+            'Participated in daily stand-ups, code reviews, and utilized Git for version control to maintain a clean codebase.',
           ],
         ),
 

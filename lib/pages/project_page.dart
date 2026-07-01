@@ -15,7 +15,11 @@ class ProjectPage extends StatelessWidget {
 
     final int webCols = isMobile ? 1 : 2;
 
-    final int mobCols = isMobile ? 1 : isTablet ? 2 : 3;
+    final int mobCols = isMobile
+        ? 1
+        : isTablet
+        ? 2
+        : 3;
 
     return SizedBox.expand(
       child: SingleChildScrollView(
@@ -26,7 +30,6 @@ class ProjectPage extends StatelessWidget {
                 ? CrossAxisAlignment.center
                 : CrossAxisAlignment.start,
             children: [
-
               DashTitle(title: 'MY WORK'),
               const SizedBox(height: 12),
 
@@ -59,7 +62,9 @@ class ProjectPage extends StatelessWidget {
                         ),
                         Text(
                           'Flutter apps, portfolio and other experiments.',
-                          textAlign: isMobile ? TextAlign.start : TextAlign.center,
+                          textAlign: isMobile
+                              ? TextAlign.start
+                              : TextAlign.center,
                           style: TextStyle(color: colorScheme.onSurfaceVariant),
                         ),
                       ],
@@ -68,8 +73,21 @@ class ProjectPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text('Total', style: TextStyle(color: colorScheme.onSurfaceVariant, fontSize: 14)),
-                      Text('5', style: TextStyle(color: colorScheme.primary, fontSize: isMobile ? 28 : 40, fontWeight: FontWeight.bold)),
+                      Text(
+                        'Total',
+                        style: TextStyle(
+                          color: colorScheme.onSurfaceVariant,
+                          fontSize: 14,
+                        ),
+                      ),
+                      Text(
+                        '6',
+                        style: TextStyle(
+                          color: colorScheme.primary,
+                          fontSize: isMobile ? 28 : 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -102,7 +120,8 @@ class ProjectPage extends StatelessWidget {
                       'assets/images/tracktasty.png',
                       'assets/images/tracktasty2.png',
                     ],
-                    githubUrl: 'https://github.com/emjeypugeee/TrackTasty-Website',
+                    githubUrl:
+                        'https://github.com/emjeypugeee/TrackTasty-Website',
                   ),
                 ],
               ),
@@ -118,8 +137,33 @@ class ProjectPage extends StatelessWidget {
                 cols: mobCols,
                 children: [
                   MobileProjectCard(
+                    title: 'TracKita',
+                    description:
+                        'A workforce management app that works offline-first – attendance tracking, payroll, and employee management made simple.',
+                    tags: ['Flutter', 'BloC', 'Drift', 'SupaBase'],
+                    imagePaths: [
+                      'assets/images/trackita/create.png',
+                      'assets/images/trackita/login.png',
+                      'assets/images/trackita/menu.png',
+                      'assets/images/trackita/coffee.png',
+                      'assets/images/trackita/dashboard.png',
+                      'assets/images/trackita/worker_page.png',
+                      'assets/images/trackita/worker.png',
+                      'assets/images/trackita/qr.png',
+                      'assets/images/trackita/scanner.png',
+                      'assets/images/trackita/log.png',
+                      'assets/images/trackita/payroll.png',
+                      'assets/images/trackita/settings.png',
+                      'assets/images/trackita/payslip.png',
+                    ],
+                    githubUrl: '',
+                    playStoreUrl:
+                        'https://play.google.com/store/apps/details?id=app.emjeypuge.trackita',
+                  ),
+                  MobileProjectCard(
                     title: 'Track-Fund',
-                    description: 'A simple expense tracker built with Flutter and Drift Database. (Personal Project)',
+                    description:
+                        'A simple expense tracker built with Flutter and Drift Database. (Personal Project)',
                     tags: ['Flutter', 'Drift', 'BLoC'],
                     imagePaths: [
                       'assets/images/trackfund/tf_start.png',
@@ -131,11 +175,13 @@ class ProjectPage extends StatelessWidget {
                       'assets/images/trackfund/tf_analytics.png',
                       'assets/images/trackfund/tf_wallet.png',
                     ],
-                    githubUrl: 'https://github.com/emjeypugeee/TrackFund-Flutter',
+                    githubUrl:
+                        'https://github.com/emjeypugeee/TrackFund-Flutter',
                   ),
                   MobileProjectCard(
                     title: 'My ChatBot',
-                    description: 'A simple chatbot with minimal features but with dark mode. Powered by DeepSeek API.',
+                    description:
+                        'A simple chatbot with minimal features but with dark mode. Powered by DeepSeek API.',
                     tags: ['Flutter', 'Firebase', 'Provider'],
                     imagePaths: [
                       'assets/images/chatbot/cb.png',
@@ -147,7 +193,8 @@ class ProjectPage extends StatelessWidget {
                   ),
                   MobileProjectCard(
                     title: 'TrackTasty',
-                    description: 'A macro-tracking application with food database, chatbot for nutrition advice, and smart food scanning.',
+                    description:
+                        'A macro-tracking application with food database, chatbot for nutrition advice, and smart food scanning.',
                     tags: ['Flutter', 'Firebase', 'Provider'],
                     imagePaths: [
                       'assets/images/tracktasty/tt.jpg',

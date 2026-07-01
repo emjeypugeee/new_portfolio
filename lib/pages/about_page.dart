@@ -184,17 +184,17 @@ class AboutPage extends StatelessWidget {
     return [
       timelineItem(
         context: context,
-        date: 'FEB 2026 — Present',
-        role: 'IT Intern',
-        company: 'PGX Group Inc. · Philippines',
-        isActive: true,
-      ),
-      timelineItem(
-        context: context,
         date: 'DEC 2025 — Present',
         role: 'Flutter Developer Intern',
         company: 'Peddlr Philippines, Inc.',
         isActive: true,
+      ),
+      timelineItem(
+        context: context,
+        date: 'FEB 2026 — JUN 2026',
+        role: 'IT Intern',
+        company: 'PGX Group Inc. · Philippines',
+        isActive: false,
       ),
       timelineItem(
         context: context,
@@ -344,10 +344,7 @@ class AboutPage extends StatelessWidget {
                 children: [
                   Text(
                     date,
-                    style: TextStyle(
-                      color: colorScheme.primary,
-                      fontSize: 12,
-                    ),
+                    style: TextStyle(color: colorScheme.primary, fontSize: 12),
                   ),
                   const SizedBox(height: 2),
                   Text(

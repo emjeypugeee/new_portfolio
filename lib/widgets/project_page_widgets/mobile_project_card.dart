@@ -111,7 +111,7 @@ class _MobileProjectCardState extends State<MobileProjectCard> {
                       CustomButton(
                         title: 'GitHub →',
                         color: colorScheme.primary,
-                        isActive: true, 
+                        isActive: true,
                         onTap: () => _launchURL(widget.githubUrl ?? ''),
                       ),
                     if (widget.playStoreUrl != null) ...[
@@ -119,8 +119,8 @@ class _MobileProjectCardState extends State<MobileProjectCard> {
                       CustomButton(
                         title: 'Play Store ↗',
                         color: colorScheme.primary,
-                        isActive: false, 
-                        onTap: () {}, 
+                        isActive: false,
+                        onTap: () => _launchURL(widget.playStoreUrl ?? ''),
                       ),
                     ],
                   ],
